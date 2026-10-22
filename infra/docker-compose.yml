@@ -1,0 +1,22 @@
+name: martex
+services:
+  martex-db:
+    image: postgres:16-alpine
+    container_name: martex-db
+    environment:
+      POSTGRES_DB: martex
+      POSTGRES_USER: martex
+      POSTGRES_PASSWORD: ${MARTEX_DB_PASSWORD:?set MARTEX_DB_PASSWORD in .env}
+    volumes:
+      - martex_pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - ../data/clean:/seed:ro
+    ports:
+      - "5433:5432"
+    networks: [zetaris]
+volumes:
+  martex_pgdata:
+networks:
+  zetaris:
+    name: zetaris_default
+    external: true
