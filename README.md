@@ -1,0 +1,65 @@
+# Assisted Vessel Intelligence
+
+**Human-Centred Decision Intelligence for Vessel & Shore Operations**
+
+An independent technology demonstrator exploring how digitalisation, analytics, optimisation, deterministic safety logic and generative-AI concepts could support container-vessel and shore operations — while keeping human operational authority firmly in the loop.
+
+> This is a standalone concept prototype. It uses entirely synthetic operational data, is not connected to any real vessel, and is not intended for operational use. It does not represent, and is not affiliated with, any real shipping company, classification society, shipbuilder, technology vendor, or vessel operator.
+
+## What this is
+
+A browser-based, single-page application demonstrating the conceptual decision chain:
+
+```
+SENSE → UNDERSTAND → PREDICT → RECOMMEND → SAFETY VALIDATE → EXPLAIN
+      → HUMAN DECISION → CONTROLLED ACTION → MONITOR OUTCOME → AUDIT
+```
+
+It includes a Bridge Operations mission-control canvas, a Chief-Engineer-style Engineering Operations workspace with streaming telemetry, an interactive vessel-system Digital Twin, a canvas-rendered real-time Navigation Operating Picture, a Shore Assisted Operations Centre, an L0–L4 assistance-level framework, a deterministic Safety/ODD engine, a Connected-POC service-adapter boundary, a ten-phase Demo Voyage sequencer, and a full engineering documentation set under [`docs/`](docs/).
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the printed local URL and click **ENTER BRIDGE OPERATIONS**, or **START DEMO VOYAGE** for a guided end-to-end walkthrough.
+
+## Scripts
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Type-check and build the static production site into `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run test` | Run the unit test suite (Vitest) |
+| `npm run test:e2e` | Run the Playwright end-to-end acceptance-journey suite (builds/serves first via `npm run preview`) |
+| `npm run lint` | Run oxlint |
+| `npm run verify` | Lint, type-check and unit tests in one command (what CI runs) |
+
+## Documentation
+
+- [Product Requirements](docs/product-requirements.md)
+- [System Requirements](docs/system-requirements.md)
+- [Use Cases](docs/use-cases.md)
+- [Architecture](docs/architecture.md)
+- [Concept of Operations](docs/conops.md)
+- [Assumptions](docs/assumptions.md)
+- [Requirements Traceability](docs/requirements-traceability.md)
+- [V4 Assurance Review and Remediation](docs/v4-assurance-review.md)
+- [Production Architecture Assessment](docs/production-architecture-assessment.md)
+
+## Deploying to Vercel
+
+The app is a static Vite build. Import the repository in Vercel (Vite preset); [`vercel.json`](vercel.json) points Vercel at the workspace build output (`packages/app/dist`). No environment variables are needed. The app uses a hash router and the base path defaults to `/`; set `VITE_BASE_PATH` to build for a sub-path.
+
+CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs package-boundary checks, lint, type-check, unit tests and the Playwright journeys on every push and pull request to `main`.
+
+## Disclaimer
+
+This independent technology demonstrator uses entirely synthetic operational data and illustrative engineering logic. It is not connected to a vessel, does not provide navigational or engineering advice, and is not intended for operational use.
+
+## Licence
+
+See [`LICENSE`](LICENSE). This repository is published for portfolio and evaluation purposes only, all rights reserved.

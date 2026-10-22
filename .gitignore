@@ -1,0 +1,37 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+
+# Vite / TS build info
+*.tsbuildinfo
+
+# Playwright (root, and packages/app since the Playwright config lives there post Phase 1A)
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+packages/app/test-results
+packages/app/playwright-report
+packages/app/blob-report
+packages/app/playwright/.cache
+Claude outputs/

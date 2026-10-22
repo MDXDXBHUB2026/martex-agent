@@ -1,0 +1,85 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lint, type-check and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Package-boundary enforcement runs first and on its own: a boundary violation should fail
+      # fast, before spending time on lint/type-check/tests, and be unmistakable in the log rather
+      # than buried inside another step's output.
+      - name: Check package boundaries (dependency-cruiser)
+        run: npm run depcruise
+
+      - name: Lint
+        run: npm run lint
+
+      # Type-checking is a separate, named step. It previously happened implicitly inside the
+      # build, under a step labelled "Type check, lint and test" that ran neither.
+      - name: Type check
+        run: npx tsc -b
+
+      - name: Unit and property tests
+        run: npm run test
+
+  e2e:
+    name: End-to-end acceptance journeys
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      # BUS-108 requires the primary human-decision journeys to be covered by Playwright against
+      # a production build. That requirement was previously asserted in the docs but never
+      # enforced here, so the suite could rot without the pipeline noticing.
+      - name: Run acceptance journeys
+        run: npm run test:e2e
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
