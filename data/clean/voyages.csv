@@ -1,0 +1,4 @@
+voyage_id,vessel_id,destination_unlocode,destination_name,berth_window_start_utc,berth_window_end_utc,planned_speed_kn,status,data_origin
+V-MV-2610,V-MV,AEJEA,Mina Jabal Ali,2026-10-22T23:00:00Z,2026-10-23T03:00:00Z,16.0,inbound,synthetic
+V-SC-2610,V-SC,AEJEA,Mina Jabal Ali,2026-10-23T07:00:00Z,2026-10-23T13:00:00Z,15.5,inbound,synthetic
+V-NA-2610,V-NA,AEJEA,Mina Jabal Ali,2026-10-22T14:00:00Z,2026-10-22T18:00:00Z,15.0,inbound,synthetic

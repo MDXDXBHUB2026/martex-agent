@@ -1,0 +1,4 @@
+vessel_id,name,vessel_type,teu_capacity,design_speed_kn,loa_m,beam_m,mcr_kw,data_origin
+V-MV,MV Meridian Voyager,Container Vessel,8500,18.5,300.0,48.2,41000,synthetic
+V-SC,MV Silver Current,Container Vessel,9200,18.0,305.0,48.4,43000,synthetic
+V-NA,MV Northern Aurora,Container Vessel,6800,19.0,275.0,40.0,36000,synthetic

@@ -1,0 +1,4 @@
+vessel_id,ts_utc,system,code,severity,message,data_origin
+V-MV,2026-10-21T18:00:00Z,Main Engine,ME-TC-EFF-LOW,warning,Turbocharger efficiency below threshold; scavenge air temperature rising,synthetic
+V-MV,2026-10-22T01:00:00Z,Main Engine,ME-EXH-DEV-HIGH,warning,Exhaust temperature deviation across cylinders above 15 C,synthetic
+V-SC,2026-10-20T13:00:00Z,Cargo,CARGO-DRAFT-CHANGE,info,Departure draft increased after loading; trim and draft updated,synthetic
